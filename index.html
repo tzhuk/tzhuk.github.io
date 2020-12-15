@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Share Board Name</title>
+  <link rel = "stylesheet" type = "text/css" href = "./styles.css" />
+  <link rel = "stylesheet" type = "text/css" href = "./emails-input-styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="share-form">
+    <div class="input-container">
+      <h1 class="header">Share <b>Board name</b> with others</h1>
+      <div id="emails-input"></div>
+    </div>
+    <div class="buttons-container">
+      <button class="button" id="addEmail">Add email</button>
+      <button class="button" id="getCount">Get emails count</button>
+    </div>
+  </div>
+  <script src="./emails-input.js"></script>
+  <script>
+    var generateEmail = function () {
+      var chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+      var email = '';
+      var userNameLength = Math.floor(Math.random() * (16 - 5) + 5);
+      for (var i = 0; i < userNameLength; i++){
+        email = email + chars[Math.floor(Math.random() * chars.length)];
+      }
+
+      email = email + '@';
+
+      var domainNameLength = Math.floor(Math.random() * (6 - 2) + 2);
+      for (var k = 0; k < domainNameLength; k++){
+        email = email + chars[Math.floor(Math.random() * 26)];
+      }
+
+      return email + '.com'
+    }
+    var inputContainerNode = document.querySelector('#emails-input');
+    var emailsInput = EmailsInput(inputContainerNode);
+
+    document.getElementById('addEmail').addEventListener('click', function () {
+      emailsInput.addEmail(generateEmail());
+    })
+
+    document.getElementById('getCount').addEventListener('click', function () {
+      var emails = emailsInput.getEmails();
+      var emailsCount = emails ? emails.split(',').length : 0;
+      alert('Emails count: ' + emailsCount);
+    })
+  </script>
+</body>
+</html>
