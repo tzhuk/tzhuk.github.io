@@ -17,7 +17,7 @@ adds email to the list
 #### getEmails(): string ####
 returns a list of emails divided by comma
 
-## API Example
+## Example
 ```html
 <html lang="en">
 <head>
